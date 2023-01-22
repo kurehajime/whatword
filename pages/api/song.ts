@@ -11,16 +11,9 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-const generatePrompt = (animal: string) => {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
+const generatePrompt = (keyword: string) => {
+  return `「${keyword}」に関する8行の詩を日本語で作ってください。
+  ただし歌詞の中で「${keyword}」や${keyword}を意味する日本語を絶対に使わないでください。`;
 }
 export default async function handler(
   req: NextApiRequest,
@@ -48,6 +41,7 @@ export default async function handler(
       model: "text-davinci-003",
       prompt: generatePrompt(keyword),
       temperature: 0.6,
+      max_tokens: 500
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error: any) {

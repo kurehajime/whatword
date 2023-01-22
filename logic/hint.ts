@@ -7,5 +7,6 @@ export async function getHint(keyword: string): Promise<string> {
             body: JSON.stringify(req)
         });
     const data = await response.json();
+    console.log(data)
     return data.result;
 }
