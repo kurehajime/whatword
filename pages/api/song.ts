@@ -26,6 +26,7 @@ export default async function handler(
     });
     return;
   }
+  console.log(req.body)
   const body = JSON.parse(req.body)
   const keyword = body?.keyword || '';
   if (keyword.trim().length === 0) {
