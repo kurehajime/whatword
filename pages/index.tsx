@@ -18,6 +18,8 @@ export default function Home() {
     console.log(word)
     const result = await getHint(word)
     setHint(result)
+    setMessege("")
+    setTurn(0)
   }
   const answer = () => {
     if (input.toLocaleUpperCase() === word.toLocaleUpperCase()) {
@@ -25,6 +27,7 @@ export default function Home() {
     } else {
       setMessege("違うよ！")
       setTurn(turn + 1)
+      setInput("")
     }
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
