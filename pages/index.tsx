@@ -2,10 +2,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { useEffect } from 'react'
+import { getHint } from '@/logic/hint'
 
 export default function Home() {
+  useEffect(() => {
+    (async () => {
+      const result = await getHint("cat")
+    })()
+  }, [])
   return (
     <>
       <Head>

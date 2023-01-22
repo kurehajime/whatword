@@ -33,8 +33,8 @@ export default async function handler(
     });
     return;
   }
-
-  const keyword = req.body.keyword || '';
+  const body = JSON.parse(req.body)
+  const keyword = body?.keyword || '';
   if (keyword.trim().length === 0) {
     res.status(400).json({
       error: ["Please enter keyword "]
