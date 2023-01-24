@@ -23,7 +23,8 @@ export default function Home() {
     setTurn(0)
     setHint("ポエムを考え中...")
     const result = await getHint(word)
-    setHint(result.trim())
+    const regexp = /^[0-9]\.\s*(.*)/mg;
+    setHint(result.trim().replaceAll(regexp, '$1'))
     setThinking(false)
   }
   const answer = () => {
