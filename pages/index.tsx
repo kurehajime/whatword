@@ -48,28 +48,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={styles.main}>
-        <div>
-          <h1>AIポエムクイズ</h1>
-          <p>ランダムなキーワード(英単語)をテーマにしてAIがポエムを作るよ。<br />
-            キーワードが何か予想してみよう。</p>
-          <button onClick={showHint}
-            className="btn w-64 rounded-full"
-          >問題を出題</button>
-          <br />
-          <Result keyword={word} turn={turn} />
-          <br />
-          <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
-            placeholder="英単語で回答してね"
-            className="input input-bordered w-full max-w-xs" />
-          <button onClick={answer}
-            className="btn w-64 rounded-full"
-          >回答</button>
-          <p>{messege}</p>
-          <br />
-          {
-            thinking ? <Thinking /> : <pre>{hint}</pre>
-          }
-
+        <div className='grid grid-cols-2 gap-4'>
+          <div className='grid grid-flow-row auto-rows-max'>
+            <h1>AIポエムクイズ</h1>
+            <p>ランダムなキーワード(英単語)をテーマにしてAIがポエムを作るよ。<br />
+              キーワードが何か予想してみよう。</p>
+            <button onClick={showHint}
+              className="btn w-64 rounded-full"
+            >問題を出題</button>
+            <Result keyword={word} turn={turn} />
+            <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
+              placeholder="英単語で回答してね"
+              className="input input-bordered w-full max-w-xs" />
+            <button onClick={answer}
+              className="btn w-64 rounded-full"
+            >回答</button>
+            <p>{messege}</p>
+          </div>
+          <div>
+            {
+              thinking ? <Thinking /> : <pre>{hint}</pre>
+            }
+          </div>
         </div>
       </main>
     </>
