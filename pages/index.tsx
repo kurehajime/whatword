@@ -52,13 +52,18 @@ export default function Home() {
           <h1>AIポエムクイズ</h1>
           <p>ランダムなキーワード(英単語)をテーマにしてAIがポエムを作るよ。<br />
             キーワードが何か予想してみよう。</p>
-          <button onClick={showHint}>問題を出題</button>
+          <button onClick={showHint}
+            className="btn w-64 rounded-full"
+          >問題を出題</button>
           <br />
           <Result keyword={word} turn={turn} />
           <br />
           <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
-            placeholder="英単語で回答してね" />
-          <button onClick={answer} >回答</button>
+            placeholder="英単語で回答してね"
+            className="input input-bordered w-full max-w-xs" />
+          <button onClick={answer}
+            className="btn w-64 rounded-full"
+          >回答</button>
           <p>{messege}</p>
           <br />
           {
