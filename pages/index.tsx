@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { getHint } from '@/logic/hint'
 import { getWord } from '@/logic/word'
 import Result from '@/compornents/result'
+import Thinking from '@/compornents/thinking'
 
 export default function Home() {
   const [word, setWord] = useState("")
@@ -11,15 +12,17 @@ export default function Home() {
   const [turn, setTurn] = useState(0)
   const [input, setInput] = useState("")
   const [messege, setMessege] = useState("")
+  const [thinking, setThinking] = useState(false)
   const showHint = async () => {
     const word = await getWord()
-    setHint("考え中...")
+    setThinking(true)
     setWord(word)
     console.log(word)
-    const result = await getHint(word)
-    setHint(result)
     setMessege("")
     setTurn(0)
+    const result = await getHint(word)
+    setHint(result)
+    setThinking(false)
   }
   const answer = () => {
     if (input.toLocaleUpperCase() === word.toLocaleUpperCase()) {
@@ -31,7 +34,12 @@ export default function Home() {
     }
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value)
+    setInput(e.target.value.toUpperCase())
+  }
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      answer()
+    }
   }
   return (
     <>
@@ -48,11 +56,15 @@ export default function Home() {
           <br />
           <Result keyword={word} turn={turn} />
           <br />
-          <input type="text" value={input} onChange={onChange} />
+          <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
+            placeholder="英単語で回答してね" />
           <button onClick={answer} >回答</button>
           <p>{messege}</p>
           <br />
-          <pre>{hint}</pre>
+          {
+            thinking ? <Thinking /> : <pre>{hint}</pre>
+          }
+
         </div>
       </main>
     </>
