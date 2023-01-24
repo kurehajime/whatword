@@ -20,6 +20,7 @@ export default function Home() {
     setWord(word)
     console.log(word)
     setMessege("")
+    setInput("")
     setTurn(0)
     setHint("ポエムを考え中...")
     const result = await getHint(word)
@@ -53,7 +54,7 @@ export default function Home() {
       <main className={styles.main}>
         <div className='grid grid-cols-2 gap-4'>
           <div className='grid grid-flow-row auto-rows-max'>
-            <h1>AIポエムクイズ</h1>
+            <h1 className='text-3xl text-blue-500 font-black'>AIポエムクイズ</h1>
             <button onClick={showHint}
               className="btn w-64 rounded-full"
             >問題を出題</button>

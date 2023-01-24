@@ -12,7 +12,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 const generatePrompt = (keyword: string) => {
-  return `「${keyword}」に関する8行の詩を日本語で作ってください。
+  return `「${keyword}」に関する4行の詩を日本語で作ってください。
   ただし歌詞の中で「${keyword}」や${keyword}を意味する日本語を絶対に使わないでください。`;
 }
 export default async function handler(
