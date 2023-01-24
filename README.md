@@ -1,4 +1,4 @@
 # AIポエムクイズ
 
 
-https://whatword.vercel.app/
+https://whatword-5dyx7gwrfq-an.a.run.app/
