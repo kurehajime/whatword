@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:build": "docker image build -t whatword .",
+    "docker:start": "docker run --rm -p 3000:3000 whatword"
   },
   "dependencies": {
     "@next/font": "13.1.4",
