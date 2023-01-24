@@ -4,24 +4,26 @@ import { useState } from 'react'
 import { getHint } from '@/logic/hint'
 import { getWord } from '@/logic/word'
 import Result from '@/compornents/result'
-import Thinking from '@/compornents/thinking'
+import Ai from '@/compornents/ai'
 
 export default function Home() {
   const [word, setWord] = useState("")
-  const [hint, setHint] = useState("")
+  const [hint, setHint] = useState(`ランダムなキーワード(英単語)をテーマにしてAIがポエムを作るよ。
+キーワードが何か予想してみよう。`)
   const [turn, setTurn] = useState(0)
   const [input, setInput] = useState("")
   const [messege, setMessege] = useState("")
   const [thinking, setThinking] = useState(false)
   const showHint = async () => {
-    const word = await getWord()
+    const word = getWord()
     setThinking(true)
     setWord(word)
     console.log(word)
     setMessege("")
     setTurn(0)
+    setHint("ポエムを考え中...")
     const result = await getHint(word)
-    setHint(result)
+    setHint(result.trim())
     setThinking(false)
   }
   const answer = () => {
@@ -51,8 +53,6 @@ export default function Home() {
         <div className='grid grid-cols-2 gap-4'>
           <div className='grid grid-flow-row auto-rows-max'>
             <h1>AIポエムクイズ</h1>
-            <p>ランダムなキーワード(英単語)をテーマにしてAIがポエムを作るよ。<br />
-              キーワードが何か予想してみよう。</p>
             <button onClick={showHint}
               className="btn w-64 rounded-full"
             >問題を出題</button>
@@ -67,7 +67,10 @@ export default function Home() {
           </div>
           <div>
             {
-              thinking ? <Thinking /> : <pre>{hint}</pre>
+              <Ai
+                thinking={thinking}
+                message={hint}
+              />
             }
           </div>
         </div>
