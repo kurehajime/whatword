@@ -17,11 +17,11 @@ export default function Home() {
   const showHint = async () => {
     const word = getWord()
     setThinking(true)
+    setTurn(0)
     setWord(word)
-    console.log(word)
     setMessege("")
     setInput("")
-    setTurn(0)
+    console.log(word)
     setHint("ポエムを考え中...")
     const result = await getHint(word)
     const regexp = /^[0-9]\.\s*(.*)/mg;
