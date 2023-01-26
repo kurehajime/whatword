@@ -8,7 +8,8 @@ import Ai from '@/compornents/ai'
 
 export default function Home() {
   const [word, setWord] = useState("")
-  const [hint, setHint] = useState(`ランダムなキーワード(英単語)をテーマにしてAIがポエムを作るよ。
+  const [hint, setHint] = useState(`ランダムなキーワード(英単語)をテーマにして
+AIがポエムを作るよ。
 キーワードが何か予想してみよう。`)
   const [turn, setTurn] = useState(0)
   const [input, setInput] = useState("")
@@ -25,7 +26,7 @@ export default function Home() {
     setHint("ポエムを考え中...")
     const result = await getHint(word)
     const regexp = /^[0-9]\.\s*(.*)/mg;
-    setHint(result.trim().replaceAll(regexp, '$1'))
+    setHint(result.trim().replaceAll(regexp, '$1').split('\n').slice(0, 4).join('\n'))
     setThinking(false)
   }
   const answer = () => {
