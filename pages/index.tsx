@@ -9,14 +9,14 @@ import Poem from '@/compornents/poem'
 
 export default function Home() {
   const [word, setWord] = useState("")
-  const [hint, setHint] = useState(`ランダムなキーワード(英単語)をテーマにして
-AIがポエムを作るよ。
-キーワードが何か予想してみよう。`)
+  const [hint, setHint] = useState(`ポエムを作るよ！`)
   const [turn, setTurn] = useState(0)
   const [input, setInput] = useState("")
   const [messege, setMessege] = useState("")
   const [thinking, setThinking] = useState(false)
   const [start, setStart] = useState(false)
+  const [end, setEnd] = useState(false)
+  const [success, setSuccess] = useState(false)
   const showHint = async () => {
     const word = getWord()
     setThinking(true)
@@ -32,21 +32,29 @@ AIがポエムを作るよ。
     setHint(result.trim().replaceAll(regexp, '$1').split('\n').slice(0, 4).join('\n'))
     setThinking(false)
     setStart(true)
+    setEnd(false)
+    setSuccess(false)
   }
   const answer = () => {
     if (input.toLocaleUpperCase() === word.toLocaleUpperCase()) {
+      setSuccess(true)
+      setEnd(true)
       setMessege("正解！")
+    } else if (turn >= word.length - 1) {
+      setEnd(true)
+      setInput("")
+      setMessege("残念、ゲームオーバー")
     } else {
       setMessege("違うよ！")
-      setTurn(turn + 1)
       setInput("")
     }
+    setTurn(turn + 1)
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value.toUpperCase())
   }
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !end) {
       answer()
     }
   }
@@ -68,9 +76,13 @@ AIがポエムを作るよ。
                   placeholder="英単語で回答してね"
                   className="input input-bordered w-full max-w-xs" />
                 <div className="card-actions justify-end">
-                  <button onClick={answer}
-                    className="btn btn-primary"
-                  >回答</button>
+                  {
+                    end ? <button onClick={showHint}
+                      className={`btn ${success ? 'btn-accent' : 'btn-secondary'}`}
+                    >違う問題</button> : <button onClick={answer}
+                      className="btn btn-primary"
+                    >回答</button>
+                  }
                 </div>
               </div>
 
@@ -79,12 +91,13 @@ AIがポエムを作るよ。
                 <h2 className='card-title'>ルール</h2 >
                 <ul className='list-disc'>
                   <li>秘密のキーワードが何かを当ててみよう</li>
-                  <li>AIがキーワードをもとにポエムを作るよ</li>
+                  <li>AIがそのキーワードをもとにポエムを作るよ</li>
                   <li>誤回答するごとに1文字ずつ公開されるよ</li>
                 </ul>
                 <div className="card-actions justify-end">
                   <button onClick={showHint}
-                    className="btn btn-primary"
+                    className="btn btn-accent"
+                    disabled={thinking}
                   >問題を出題</button>
                 </div>
               </div>
