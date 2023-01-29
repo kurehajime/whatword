@@ -6,6 +6,7 @@ import { getWord } from '@/logic/word'
 import Result from '@/compornents/result'
 import Ai from '@/compornents/ai'
 import Poem from '@/compornents/poem'
+import Message from '@/compornents/message'
 
 export default function Home() {
   const [word, setWord] = useState("")
@@ -110,7 +111,9 @@ export default function Home() {
             />
             <div className='flex'>
               <div className='w-48'>
-                <p>{messege}</p>
+                <Message
+                  message={messege}
+                />
               </div>
               <div>
                 <Ai

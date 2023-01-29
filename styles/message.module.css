@@ -1,0 +1,27 @@
+.balloon {
+    --bg-color: skyblue;
+    display: table;
+    position: relative;
+    color: black;
+    border: 2px solid var(--bg-color);
+    background-color: var(--bg-color);
+    padding: 0 .5em;
+    border-radius: 30px;
+    margin-bottom: 9px;
+    display: table;
+    min-height: 50px;
+    width: 200px;
+}
+
+.balloon pre {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bolder;
+    color: darkblue;
+}
+
+.horn {
+    margin: -42px 195px 0;
+    color: skyblue;
+}
