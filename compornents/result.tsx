@@ -4,7 +4,7 @@ type Props = {
 }
 
 export default function Result(props: Props) {
-    const size = 50
+    const size = 32
     const maxLength = 8
     const length = props.keyword.length
     const word = props.keyword.split("")

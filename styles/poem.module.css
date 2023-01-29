@@ -1,0 +1,24 @@
+.balloon {
+    --bg-color: limegreen;
+    display: table;
+    position: relative;
+    color: black;
+    border: 2px solid var(--bg-color);
+    background-color: var(--bg-color);
+    padding: 0 .5em;
+    border-radius: 10px;
+    margin-bottom: 9px;
+    display: table;
+    min-height: 100px;
+    width: 500px;
+}
+
+.balloon pre {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.horn {
+    margin: -16px 330px 0;
+    color: limegreen;
+}

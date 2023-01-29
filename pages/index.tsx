@@ -5,6 +5,7 @@ import { getHint } from '@/logic/hint'
 import { getWord } from '@/logic/word'
 import Result from '@/compornents/result'
 import Ai from '@/compornents/ai'
+import Poem from '@/compornents/poem'
 
 export default function Home() {
   const [word, setWord] = useState("")
@@ -53,8 +54,8 @@ AIがポエムを作るよ。
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={styles.main}>
-        <div className='grid grid-cols-2 gap-4'>
-          <div className='grid grid-flow-row auto-rows-max'>
+        <div className='flex w-full gap-5'>
+          <div className='grow-0 w-72'>
             <h1 className='text-3xl text-blue-500 font-black'>AIポエムクイズ</h1>
             <button onClick={showHint}
               className="btn w-64 rounded-full"
@@ -66,15 +67,22 @@ AIがポエムを作るよ。
             <button onClick={answer}
               className="btn w-64 rounded-full"
             >回答</button>
-            <p>{messege}</p>
           </div>
-          <div>
-            {
-              <Ai
-                thinking={thinking}
-                message={hint}
-              />
-            }
+          <div className='grow '>
+            <Poem
+              message={hint}
+            />
+            <div className='flex'>
+              <div className='w-48'>
+                <p>{messege}</p>
+              </div>
+              <div>
+                <Ai
+                  thinking={thinking}
+                />
+              </div>
+
+            </div>
           </div>
         </div>
       </main>
