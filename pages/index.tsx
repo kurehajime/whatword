@@ -16,9 +16,11 @@ AIがポエムを作るよ。
   const [input, setInput] = useState("")
   const [messege, setMessege] = useState("")
   const [thinking, setThinking] = useState(false)
+  const [start, setStart] = useState(false)
   const showHint = async () => {
     const word = getWord()
     setThinking(true)
+    setStart(false)
     setTurn(0)
     setWord(word)
     setMessege("")
@@ -29,6 +31,7 @@ AIがポエムを作るよ。
     const regexp = /^[0-9]\.\s*(.*)/mg;
     setHint(result.trim().replaceAll(regexp, '$1').split('\n').slice(0, 4).join('\n'))
     setThinking(false)
+    setStart(true)
   }
   const answer = () => {
     if (input.toLocaleUpperCase() === word.toLocaleUpperCase()) {
@@ -55,18 +58,38 @@ AIがポエムを作るよ。
       </Head>
       <main className={styles.main}>
         <div className='flex w-full gap-5'>
-          <div className='grow-0 w-72'>
+          <div className='grow-0 w-80'>
             <h1 className='text-3xl text-blue-500 font-black'>AIポエムクイズ</h1>
-            <button onClick={showHint}
-              className="btn w-64 rounded-full"
-            >問題を出題</button>
-            <Result keyword={word} turn={turn} />
-            <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
-              placeholder="英単語で回答してね"
-              className="input input-bordered w-full max-w-xs" />
-            <button onClick={answer}
-              className="btn w-64 rounded-full"
-            >回答</button>
+
+            {start ? <div className='card w-80 bg-base-100 shadow-xl'>
+              <div className='card-body'>
+                <Result keyword={word} turn={turn} />
+                <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
+                  placeholder="英単語で回答してね"
+                  className="input input-bordered w-full max-w-xs" />
+                <div className="card-actions justify-end">
+                  <button onClick={answer}
+                    className="btn btn-primary"
+                  >回答</button>
+                </div>
+              </div>
+
+            </div> : <div className='card w-80 bg-base-100 shadow-xl'>
+              <div className='card-body'>
+                <h2 className='card-title'>ルール</h2 >
+                <ul className='list-disc'>
+                  <li>秘密のキーワードが何かを当ててみよう</li>
+                  <li>AIがキーワードをもとにポエムを作るよ</li>
+                  <li>誤回答するごとに1文字ずつ公開されるよ</li>
+                </ul>
+                <div className="card-actions justify-end">
+                  <button onClick={showHint}
+                    className="btn btn-primary"
+                  >問題を出題</button>
+                </div>
+              </div>
+            </div>
+            }
           </div>
           <div className='grow '>
             <Poem
