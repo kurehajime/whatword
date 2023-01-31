@@ -8,7 +8,7 @@ import Result from '@/compornents/result'
 import Ai from '@/compornents/ai'
 import Poem from '@/compornents/poem'
 import Message from '@/compornents/message'
-const font = Dela_Gothic_One({ weight: "400", subsets: ['latin'] })
+const font = Dela_Gothic_One({ weight: "400", subsets: ['latin'], display: 'fallback' })
 export default function Home() {
   const [word, setWord] = useState("")
   const [hint, setHint] = useState(`ポエムを作るよ！`)
