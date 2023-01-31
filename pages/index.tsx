@@ -1,3 +1,4 @@
+import { Dela_Gothic_One } from "@next/font/google";
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState } from 'react'
@@ -7,7 +8,7 @@ import Result from '@/compornents/result'
 import Ai from '@/compornents/ai'
 import Poem from '@/compornents/poem'
 import Message from '@/compornents/message'
-
+const font = Dela_Gothic_One({ weight: "400", subsets: ['latin'] })
 export default function Home() {
   const [word, setWord] = useState("")
   const [hint, setHint] = useState(`ポエムを作るよ！`)
@@ -68,7 +69,9 @@ export default function Home() {
       <main className={styles.main}>
         <div className='flex w-full gap-5'>
           <div className='grow-0 w-80'>
-            <h1 className='text-3xl text-blue-500 font-black'>AIポエムクイズ</h1>
+            <div className="p-2">
+              <h1 className={font.className + ' text-3xl'}>AIポエムクイズ</h1>
+            </div>
 
             {start ? <div className='card w-80 bg-base-100 shadow-xl'>
               <div className='card-body'>
