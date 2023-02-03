@@ -67,7 +67,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={styles.main}>
-        <div className='flex w-full gap-5'>
+        <div className='md:flex w-full gap-5'>
           <div className='grow-0 w-80'>
             <div className="p-2">
               <h1 className={font.className + ' text-3xl'}>AIポエムクイズ</h1>
