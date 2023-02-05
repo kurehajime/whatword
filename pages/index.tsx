@@ -9,6 +9,7 @@ import Ai from '@/compornents/ai'
 import Poem from '@/compornents/poem'
 import Message from '@/compornents/message'
 const font = Dela_Gothic_One({ weight: "400", subsets: ['latin'], display: 'fallback' })
+
 export default function Home() {
   const [word, setWord] = useState("")
   const [hint, setHint] = useState(`ポエムを作るよ！`)
@@ -77,7 +78,7 @@ export default function Home() {
 
             {start ? <div className='card w-84 bg-base-100 shadow-xl'>
               <div className='card-body'>
-                <Result keyword={word} turn={turn} />
+                <Result keyword={word} turn={turn} success={success} end={end} />
                 <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
                   placeholder="英単語で回答してね"
                   className="input input-bordered w-full max-w-xs" />
@@ -85,7 +86,7 @@ export default function Home() {
                   {
                     end ? <button onClick={showHint}
                       className={`btn ${success ? 'btn-accent' : 'btn-secondary'}`}
-                    >違う問題</button> : <button onClick={answer}
+                    >もう一度遊ぶ</button> : <button onClick={answer}
                       className="btn btn-primary"
                     >回答</button>
                   }
@@ -125,7 +126,6 @@ export default function Home() {
                   thinking={thinking}
                 />
               </div>
-
             </div>
           </div>
         </div>

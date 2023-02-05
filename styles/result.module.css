@@ -1,0 +1,34 @@
+.success {
+    text-anchor: start;
+    stroke-dasharray: 500;
+    stroke: #333;
+    animation-name: success;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes success {
+    0% {
+        stroke-dashoffset: 500;
+        stroke-width: 1px;
+        fill: transparent;
+    }
+
+    40% {
+        fill: transparent;
+    }
+
+    60% {
+        stroke-width: 1px;
+    }
+
+    90% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-width: 0px;
+        fill: #333;
+    }
+}
