@@ -66,8 +66,22 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>whatword</title>
+        <title>AIポエムクイズ</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="AIが考えたポエムのテーマを当ててみよう" />
+        <meta property="og:url" content="https://whatword-5dyx7gwrfq-an.a.run.app/" />
+        <meta property="og:type" content="game" />
+        <meta property="og:title" content="AIポエムクイズ" />
+        <meta property="og:description" content="AIが考えたポエムのテーマを当ててみよう" />
+        <meta property="og:site_name" content="AIポエムクイズ" />
+        <meta property="og:image"
+          content="https://user-images.githubusercontent.com/4569916/216822011-48036c18-e873-43b6-b238-0a39fd149a4b.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@kurehajime" />
+        <meta name="twitter:creator" content="@kurehajime" />
       </Head>
       <main className={styles.main}>
         <div className='md:flex w-full gap-5 md:pt-5'>
