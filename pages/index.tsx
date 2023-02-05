@@ -42,15 +42,17 @@ export default function Home() {
       setSuccess(true)
       setEnd(true)
       setMessege("正解！")
+      setTurn(8)
     } else if (turn >= word.length - 1) {
       setEnd(true)
       setInput("")
       setMessege("残念、ゲームオーバー")
+      setTurn(8)
     } else {
       setMessege("違うよ！")
       setInput("")
+      setTurn(turn + 1)
     }
-    setTurn(turn + 1)
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value.toUpperCase())
@@ -67,13 +69,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <main className={styles.main}>
-        <div className='md:flex w-full gap-5'>
-          <div className='grow-0 w-80'>
+        <div className='md:flex w-full gap-5 md:pt-5'>
+          <div className='grow-0 w-84'>
             <div className="p-2">
               <h1 className={font.className + ' text-3xl'}>AIポエムクイズ</h1>
             </div>
 
-            {start ? <div className='card w-80 bg-base-100 shadow-xl'>
+            {start ? <div className='card w-84 bg-base-100 shadow-xl'>
               <div className='card-body'>
                 <Result keyword={word} turn={turn} />
                 <input type="text" value={input} onChange={onChange} onKeyDown={onKeyDown}
@@ -90,7 +92,7 @@ export default function Home() {
                 </div>
               </div>
 
-            </div> : <div className='card w-80 bg-base-100 shadow-xl'>
+            </div> : <div className='card w-84 bg-base-100 shadow-xl'>
               <div className='card-body'>
                 <h2 className='card-title'>ルール</h2 >
                 <ul className='list-disc'>
@@ -108,7 +110,7 @@ export default function Home() {
             </div>
             }
           </div>
-          <div className='grow '>
+          <div className='grow pt-3'>
             <Poem
               message={hint}
             />

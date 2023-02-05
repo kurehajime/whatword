@@ -10,7 +10,9 @@
     margin-bottom: 9px;
     display: table;
     min-height: 100px;
-    width: 500px;
+    min-width: 350px;
+    max-width: 100%;
+    width: 100%;
 }
 
 .balloon pre {
@@ -19,6 +21,6 @@
 }
 
 .horn {
-    margin: -16px 330px 0;
+    margin: -16px 260px 0;
     color: limegreen;
 }
