@@ -13,7 +13,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const generatePrompt = (keyword: string) => {
   return `「${keyword}」に関する4行の詩を日本語で作ってください。
-  ただし歌詞の中で「${keyword}」や${keyword}を意味する日本語を絶対に使わないでください。`;
+  ただし歌詞の中で「${keyword}」や「${keyword}を意味する日本語」を絶対に使わないでください。`;
 }
 export default async function handler(
   req: NextApiRequest,
@@ -38,13 +38,16 @@ export default async function handler(
 
 
   try {
-    const completion = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: generatePrompt(keyword),
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        { role: "system", content: "あなたは詩人です。詩を作って喜怒哀楽を表現することができます。" },
+        { role: "user", content: generatePrompt(keyword) }
+      ],
       temperature: 0.6,
       max_tokens: 500
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
+    res.status(200).json({ result: completion.data.choices[0].message?.content });
   } catch (error: any) {
     if (error.response) {
       console.error(error.response.status, error.response.data);
