@@ -8,25 +8,26 @@
     "start": "next start",
     "lint": "next lint",
     "docker:build": "docker image build -t whatword .",
-    "docker:start": "docker run --rm -p 3000:3000 whatword"
+    "docker:start": "docker run --rm -p 3000:3000 whatword",
+    "uplib": "npx npm-check-updates -u && npm i"
   },
   "dependencies": {
-    "@next/font": "13.1.4",
-    "@types/node": "18.11.18",
-    "@types/react": "18.0.27",
-    "@types/react-dom": "18.0.10",
-    "daisyui": "^2.47.0",
-    "eslint": "8.32.0",
-    "eslint-config-next": "13.1.4",
-    "next": "13.1.4",
-    "openai": "^3.2.1",
+    "@next/font": "13.4.7",
+    "@types/node": "20.3.2",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "daisyui": "^3.1.6",
+    "eslint": "8.43.0",
+    "eslint-config-next": "13.4.7",
+    "next": "13.4.7",
+    "openai": "^3.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.4"
+    "typescript": "5.1.5"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.21",
-    "tailwindcss": "^3.2.4"
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2"
   }
 }
