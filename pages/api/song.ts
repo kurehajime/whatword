@@ -39,7 +39,7 @@ export default async function handler(
 
   try {
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: "あなたは詩人です。詩を作って喜怒哀楽を表現することができます。" },
         { role: "user", content: generatePrompt(keyword) }
