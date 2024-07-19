@@ -1,16 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from 'openai';
 type Data = {
   result?: string
   error?: string[]
 }
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
 });
 
-const openai = new OpenAIApi(configuration);
 const generatePrompt = (keyword: string) => {
   return `「${keyword}」に関する4行の詩を日本語で作ってください。
   ただし歌詞の中で「${keyword}」や「${keyword}を意味する日本語」を絶対に使わないでください。`;
@@ -19,7 +18,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  if (!configuration.apiKey) {
+  if (!openai.apiKey) {
 
     res.status(500).json({
       error: ["OpenAI API key not configured"]
@@ -38,7 +37,7 @@ export default async function handler(
 
 
   try {
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
         { role: "system", content: "あなたは詩人です。詩を作って喜怒哀楽を表現することができます。" },
@@ -47,7 +46,7 @@ export default async function handler(
       temperature: 0.6,
       max_tokens: 500
     });
-    res.status(200).json({ result: completion.data.choices[0].message?.content });
+    res.status(200).json({ result: completion.choices[0].message?.content ?? '' });
   } catch (error: any) {
     if (error.response) {
       console.error(error.response.status, error.response.data);
