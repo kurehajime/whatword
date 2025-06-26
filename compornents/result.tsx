@@ -1,5 +1,5 @@
 import styles from '@/styles/result.module.css'
-import { Dela_Gothic_One } from "@next/font/google";
+import { Dela_Gothic_One } from "next/font/google";
 const font = Dela_Gothic_One({ weight: "400", subsets: ['latin'], display: 'fallback' })
 
 type Props = {

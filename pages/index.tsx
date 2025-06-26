@@ -1,4 +1,4 @@
-import { Dela_Gothic_One } from "@next/font/google";
+import { Dela_Gothic_One } from "next/font/google";
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import { useState } from 'react'
