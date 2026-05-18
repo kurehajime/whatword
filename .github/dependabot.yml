@@ -1,29 +1,49 @@
 version: 2
-
-multi-ecosystem-groups:
-  dependency-updates:
-    schedule:
-      interval: "weekly"
-
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    patterns:
-      - "*"
-    multi-ecosystem-group: "dependency-updates"
+    schedule:
+      interval: "weekly"
     cooldown:
-      default-days: 2
+      default-days: 7
+      semver-major-days: 60
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     groups:
       all-npm-security-updates:
         applies-to: "security-updates"
         patterns:
           - "*"
 
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
+    groups:
+      all-github-actions-security-updates:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
+
   - package-ecosystem: "docker"
     directory: "/"
-    patterns:
-      - "*"
-    multi-ecosystem-group: "dependency-updates"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
     groups:
       all-docker-security-updates:
         applies-to: "security-updates"
