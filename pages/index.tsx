@@ -28,15 +28,20 @@ export default function Home() {
     setWord(word)
     setMessege("")
     setInput("")
-    console.log(word)
     setHint("ポエムを考え中...")
-    const result = await getHint(word)
-    const regexp = /^[0-9]\.\s*(.*)/mg;
-    setHint(result.trim().replaceAll(regexp, '$1').split('\n').slice(0, 4).join('\n'))
-    setThinking(false)
-    setStart(true)
-    setEnd(false)
-    setSuccess(false)
+    try {
+      const result = await getHint(word)
+      const regexp = /^[0-9]\.\s*(.*)/mg;
+      setHint(result.trim().replaceAll(regexp, '$1').split('\n').slice(0, 4).join('\n'))
+      setStart(true)
+      setEnd(false)
+      setSuccess(false)
+    } catch (error: unknown) {
+      setHint("出題できませんでした。")
+      setMessege(error instanceof Error ? error.message : "通信に失敗しました。もう一度お試しください。")
+    } finally {
+      setThinking(false)
+    }
   }
   const answer = () => {
     if (input.toLocaleUpperCase() === word.toLocaleUpperCase()) {
