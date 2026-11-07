@@ -57,6 +57,7 @@ test('song API validates input and handles OpenAI responses', async (t) => {
 
   for (const [status, code, message] of [
     [429, 'insufficient_quota', /利用枠/],
+    [429, 'credit_balance_exhausted', /利用枠/],
     [429, 'rate_limit_exceeded', /混み合って/],
     [401, 'invalid_api_key', /利用できません/]
   ]) {

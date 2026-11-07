@@ -69,7 +69,7 @@ export default async function handler(
         requestId: error.requestID
       });
       if (error.status === 429) {
-        res.status(503).json({ error: [error.code === 'insufficient_quota'
+        res.status(503).json({ error: [error.code === 'insufficient_quota' || error.code === 'credit_balance_exhausted'
           ? '現在、出題サービスの利用枠に達しています。'
           : '出題が混み合っています。少し待ってからもう一度お試しください。'] });
         return;
